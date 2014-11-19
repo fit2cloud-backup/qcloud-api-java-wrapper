@@ -13,29 +13,11 @@ import java.util.List;
  * Email: zhcloud@fit2cloud.com
  */
 public class DescribeInstancesResponse extends CommonResponse {
-    private int code;
-    private String message;
     private int totalCount;
     private List<InstanceInfo> instanceSet;
 
     public DescribeInstancesResponse() {
 
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public int getTotalCount() {

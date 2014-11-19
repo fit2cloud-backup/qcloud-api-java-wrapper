@@ -2,6 +2,8 @@ package com.fit2cloud.qcloud.ui.model;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.ParameterizedType;
+
 /**
  * Created with IntelliJ IDEA.
  * User: zhcloud
@@ -10,46 +12,23 @@ import com.google.gson.Gson;
  * Email: zhcloud@fit2cloud.com
  */
 public class CommonResponse {
-    private int httpCode;
-    private int errorCode;
-    private String errorMessage;
+    private int code;
+    private String message;
 
-    public CommonResponse() {
+    public int getCode() {
+        return code;
     }
 
-    public CommonResponse(int httpCode, int errorCode, String errorMessage) {
-        this.httpCode = httpCode;
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public int getHttpCode() {
-        return httpCode;
+    public String getMessage() {
+        return message;
     }
 
-    public void setHttpCode(int httpCode) {
-        this.httpCode = httpCode;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public int getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-
-        this.errorMessage = errorMessage;
-    }
-
-
-    public static CommonResponse fromJson(String json) {
-        return new Gson().fromJson(json, CommonResponse.class);
-    }
 }

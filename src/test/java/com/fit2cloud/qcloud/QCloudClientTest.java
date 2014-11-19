@@ -2,6 +2,8 @@ package com.fit2cloud.qcloud;
 
 import com.fit2cloud.qcloud.ui.model.DescribeInstancesRequest;
 import com.fit2cloud.qcloud.ui.model.DescribeInstancesResponse;
+import com.fit2cloud.qcloud.ui.model.RunInstancesRequest;
+import com.fit2cloud.qcloud.ui.model.RunInstancesResponse;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,6 +35,17 @@ public class QCloudClientTest {
         System.out.println("Request: " + DescribeInstancesRequest.toJson(request));
         DescribeInstancesResponse response =  client.describeInstances(request);
         assert response.getCode() == 0;
+    }
+
+    @Test
+    public void runInstancesTest() throws Exception {
+        RunInstancesRequest request = new RunInstancesRequest();
+        request.setMethod("RunInstances");
+        request.setAction(HttpMethod.POST);
+        System.out.println("Request: " + RunInstancesRequest.toJson(request));
+        RunInstancesResponse response = client.runInstancesResponse(request);
+        assert response.getCode() == 0;
+
     }
 
 }

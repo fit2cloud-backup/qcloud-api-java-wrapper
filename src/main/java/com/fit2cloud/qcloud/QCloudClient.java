@@ -1,10 +1,13 @@
 package com.fit2cloud.qcloud;
 
 import com.fit2cloud.qcloud.ui.model.DescribeInstancesRequest;
+import com.fit2cloud.qcloud.ui.model.RunInstancesRequest;
+import com.fit2cloud.qcloud.ui.model.RunInstancesResponse;
 import com.fit2cloud.qcloud.ui.model.transform.DescribeInstancesRequestMarshaller;
 import com.fit2cloud.qcloud.util.QSign;
 import com.fit2cloud.qcloud.ui.model.DescribeInstancesResponse;
 import org.apache.commons.lang.StringEscapeUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -42,6 +45,18 @@ public class QCloudClient {
             TreeMap<String, String> requestParams = new DescribeInstancesRequestMarshaller().marshall(request);
             String retStr = _sendRequest(requestParams, requestMethod, requestAction);
             return DescribeInstancesResponse.fromJson(retStr);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+    public RunInstancesResponse runInstancesResponse(RunInstancesRequest request){
+        try {
+            String requestMethod = request.getMethod();
+            String requestAction = request.getAction();
+            TreeMap<String, String> requestParams = new ObjectMapper().convertValue(request, TreeMap.class);
+            String retStr = _sendRequest(requestParams, requestMethod, requestAction);
+            return RunInstancesResponse.fromJson(retStr);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
