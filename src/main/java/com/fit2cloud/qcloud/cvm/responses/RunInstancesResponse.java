@@ -1,5 +1,6 @@
-package com.fit2cloud.qcloud.ui.model;
+package com.fit2cloud.qcloud.cvm.responses;
 
+import com.fit2cloud.qcloud.CommonResponse;
 import com.google.gson.Gson;
 
 /**

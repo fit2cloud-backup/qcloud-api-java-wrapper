@@ -1,4 +1,4 @@
-package com.fit2cloud.qcloud;
+package com.fit2cloud.qcloud.exceptions;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,7 +8,7 @@ package com.fit2cloud.qcloud;
  * Email: zhcloud@fit2cloud.com
  */
 public class QCloudClientException extends Exception{
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -4776633044048303307L;
     public QCloudClientException() {
         super();
     }

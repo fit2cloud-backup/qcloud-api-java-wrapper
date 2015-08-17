@@ -1,4 +1,4 @@
-package com.fit2cloud.qcloud.domain.model;
+package com.fit2cloud.qcloud.cvm.model;
 
 /**
  * Created by chixq on 14-11-15.

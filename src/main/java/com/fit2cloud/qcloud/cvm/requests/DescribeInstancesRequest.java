@@ -1,4 +1,6 @@
-package com.fit2cloud.qcloud.ui.model;
+package com.fit2cloud.qcloud.cvm.requests;
+
+import com.fit2cloud.qcloud.CommonRequest;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * Time: 2:38 PM
  * Email: zhcloud@fit2cloud.com
  */
-public class DescribeInstancesRequest extends CommonRequest{
+public class DescribeInstancesRequest extends CommonRequest {
 
     private List<String> instanceIds;
     private String searchWord;
@@ -64,6 +66,18 @@ public class DescribeInstancesRequest extends CommonRequest{
     }
 
     public void setStatus(int status) {
+
         this.status = status;
+    }
+    @Override
+    public String toString() {
+        return "DescribeInstancesRequest{" +
+                "instanceIds=" + instanceIds +
+                ", searchWord='" + searchWord + '\'' +
+                ", lanIps=" + lanIps +
+                ", offset=" + offset +
+                ", limit=" + limit +
+                ", status=" + status +
+                '}';
     }
 }

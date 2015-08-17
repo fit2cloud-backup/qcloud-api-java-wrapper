@@ -1,0 +1,167 @@
+package com.fit2cloud.qcloud;
+
+import com.fit2cloud.qcloud.exceptions.QCloudClientException;
+import com.fit2cloud.qcloud.exceptions.QCloudServiceException;
+import com.fit2cloud.qcloud.util.GlobalConst;
+import com.fit2cloud.qcloud.util.QSign;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.*;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
+import java.util.Map.Entry;
+
+public class BaseModuleRequest {
+
+    protected static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+    protected static final Gson gson = new GsonBuilder().setDateFormat(ISO8601_DATE_FORMAT).create();
+
+    protected String endpoint;
+    protected String httpMethod = GlobalConst.DEFAULT_HTTPS_METHOD;
+
+    protected QCloudCredential credentials;
+
+    public BaseModuleRequest(QCloudCredential credentials, String endpoint) {
+        this.credentials = credentials;
+//        this.endpoint = URI.create(endpoint);
+        this.endpoint = endpoint;
+    }
+
+    public String execute(String action, Map<String, String> parameters) throws QCloudClientException, QCloudServiceException {
+        assert (action != null && action.length() > 0);
+        if (parameters == null) {
+            parameters = new HashMap<String, String>();
+        }
+        addCommonParams(action, parameters);
+        return sendRequest(action, parameters);
+    }
+
+    private String sendRequest(String action, Map<String, String> parameters) throws QCloudClientException, QCloudServiceException {
+        InputStream stream = null;
+        try {
+            String query = paramsToQueryString(parameters);
+            URL url = new URL("https://" + endpoint + "?" + query);
+            DefaultHttpClient client = new DefaultHttpClient();
+            System.out.println(url.toString());
+            HttpGet request = new HttpGet(url.toString());
+            HttpResponse response = client.execute(request);
+            if (response.getStatusLine().getStatusCode() >= 400) {
+                stream = response.getEntity().getContent();
+                String message = readContent(stream);
+                CommonErrorResponse error = gson.fromJson(message, CommonErrorResponse.class);
+                QCloudServiceException exception = new QCloudServiceException(error.getMessage());
+                exception.setErrorCode(error.getCode());
+                exception.setService(action);
+                throw exception;
+            } else {
+                stream = response.getEntity().getContent();
+                String message = readContent(stream);
+                return message;
+            }
+        } catch (IOException e) {
+            throw new QCloudClientException("Failed to connect to UCloud:" + e.getMessage());
+        } finally {
+            safeClose(stream);
+        }
+    }
+
+    protected void addCommonParams(String action, Map<String, String> parameters) {
+        parameters.put("Action", action);
+        parameters.put("SecretId", credentials.getSecretId());
+        parameters.put("Timestamp", String.valueOf(new Date().getTime()));
+        parameters.put("Nonce", String.valueOf(new Random().nextInt(Integer.MAX_VALUE)));
+        parameters.put("Signature", computeSignature(parameters, credentials.getSecretKey()));
+    }
+
+    protected String computeSignature(Map<String, String> parameters, String privateKey) {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(this.httpMethod).append(this.endpoint).append("?");
+        TreeMap<String, String> sortParams = new TreeMap<String, String>(parameters);
+        for (Entry<String, String> entry : sortParams.entrySet()) {
+            sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        System.out.println(sb.toString());
+        try {
+            return QSign.sign(sb.toString(), privateKey);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String paramsToQueryString(Map<String, String> params)
+            throws UnsupportedEncodingException {
+        if (params == null || params.size() == 0) {
+            return null;
+        }
+
+        StringBuilder paramString = new StringBuilder();
+        boolean first = true;
+        for (Entry<String, String> p : params.entrySet()) {
+            String key = p.getKey();
+            String val = p.getValue();
+            if (!first) {
+                paramString.append("&");
+            }
+            paramString.append(URLEncoder.encode(key, GlobalConst.CHARSET));
+
+            if (val != null) {
+                paramString.append("=").append(
+                        URLEncoder.encode(val, GlobalConst.CHARSET));
+            }
+            first = false;
+        }
+        return paramString.toString();
+    }
+
+    private String readContent(InputStream content)
+            throws IOException {
+        if (content == null)
+            return "";
+
+        Reader reader = null;
+        Writer writer = new StringWriter();
+        String result;
+
+        char[] buffer = new char[1024];
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(content, GlobalConst.CHARSET));
+            int n;
+            while ((n = reader.read(buffer)) > 0) {
+                writer.write(buffer, 0, n);
+            }
+            result = writer.toString();
+        } finally {
+            content.close();
+            if (reader != null) {
+                reader.close();
+            }
+            if (writer != null) {
+                writer.close();
+            }
+        }
+        return result;
+    }
+
+    private void safeClose(InputStream inputStream) {
+        if (inputStream != null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+}

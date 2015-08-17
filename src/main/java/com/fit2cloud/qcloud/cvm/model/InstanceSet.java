@@ -1,4 +1,4 @@
-package com.fit2cloud.qcloud.domain.model;
+package com.fit2cloud.qcloud.cvm.model;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * Time: 2:42 PM
  * Email: zhcloud@fit2cloud.com
  */
-public class InstanceInfo {
+public class InstanceSet {
 
     private String instanceName;
     private String instanceId;

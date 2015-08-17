@@ -1,17 +1,9 @@
-package com.fit2cloud.qcloud.ui.model;
-
-import com.google.gson.Gson;
-
-import java.lang.reflect.ParameterizedType;
+package com.fit2cloud.qcloud;
 
 /**
- * Created with IntelliJ IDEA.
- * User: zhcloud
- * Date: 11/10/14
- * Time: 2:37 PM
- * Email: zhcloud@fit2cloud.com
+ * Created by chixq on 7/22/15.
  */
-public class CommonResponse {
+public class CommonErrorResponse {
     private int code;
     private String message;
 
@@ -30,5 +22,5 @@ public class CommonResponse {
     public void setMessage(String message) {
         this.message = message;
     }
-
 }
+

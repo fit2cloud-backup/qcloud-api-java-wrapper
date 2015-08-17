@@ -1,4 +1,6 @@
-package com.fit2cloud.qcloud.ui.model;
+package com.fit2cloud.qcloud.cvm.requests;
+
+import com.fit2cloud.qcloud.CommonRequest;
 
 /**
  * Created by chixq on 14-11-19.
@@ -74,6 +76,23 @@ public class RunInstancesRequest extends CommonRequest {
     }
 
     public void setGoodsNum(int goodsNum) {
+
         this.goodsNum = goodsNum;
     }
+
+    @Override
+    public String toString() {
+        return "RunInstancesRequest{" +
+                "imageType=" + imageType +
+                ", imageId=" + imageId +
+                ", cpu=" + cpu +
+                ", mem=" + mem +
+                ", bandwidth=" + bandwidth +
+                ", storageType=" + storageType +
+                ", period=" + period +
+                ", goodsNum=" + goodsNum +
+                '}';
+    }
+
+
 }
