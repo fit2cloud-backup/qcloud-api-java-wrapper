@@ -14,7 +14,7 @@ public class InstanceSet {
     private String instanceName;
     private String instanceId;
     private String lanIp;
-    private List wanIpSet;
+    private List<String> wanIpSet;
     private int cpu;
     private int mem;
     private List<DiskInfo> diskInfo;
@@ -27,6 +27,12 @@ public class InstanceSet {
     private String createTime;
     private String statusTime;
     private String deadlineTime;
+    private int autoRenew;
+    private int zoneId;
+    private String zoneName;
+    private String vpcId;
+    private String subnetId;
+    private String isVpcGateway;
 
     public String getInstanceName() {
         return instanceName;
@@ -52,11 +58,11 @@ public class InstanceSet {
         this.lanIp = lanIp;
     }
 
-    public List getWanIpSet() {
+    public List<String> getWanIpSet() {
         return wanIpSet;
     }
 
-    public void setWanIpSet(List wanIpSet) {
+    public void setWanIpSet(List<String> wanIpSet) {
         this.wanIpSet = wanIpSet;
     }
 
@@ -154,5 +160,53 @@ public class InstanceSet {
 
     public void setDeadlineTime(String deadlineTime) {
         this.deadlineTime = deadlineTime;
+    }
+
+    public int getAutoRenew() {
+        return autoRenew;
+    }
+
+    public void setAutoRenew(int autoRenew) {
+        this.autoRenew = autoRenew;
+    }
+
+    public int getZoneId() {
+        return zoneId;
+    }
+
+    public void setZoneId(int zoneId) {
+        this.zoneId = zoneId;
+    }
+
+    public String getZoneName() {
+        return zoneName;
+    }
+
+    public void setZoneName(String zoneName) {
+        this.zoneName = zoneName;
+    }
+
+    public String getVpcId() {
+        return vpcId;
+    }
+
+    public void setVpcId(String vpcId) {
+        this.vpcId = vpcId;
+    }
+
+    public String getSubnetId() {
+        return subnetId;
+    }
+
+    public void setSubnetId(String subnetId) {
+        this.subnetId = subnetId;
+    }
+
+    public String getIsVpcGateway() {
+        return isVpcGateway;
+    }
+
+    public void setIsVpcGateway(String isVpcGateway) {
+        this.isVpcGateway = isVpcGateway;
     }
 }
