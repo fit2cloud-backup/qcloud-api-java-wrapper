@@ -1,8 +1,10 @@
 package com.fit2cloud.qcloud;
 
 import com.fit2cloud.qcloud.cvm.requests.DescribeInstancesRequest;
+import com.fit2cloud.qcloud.cvm.requests.DescribeProductRegionListRequest;
 import com.fit2cloud.qcloud.cvm.requests.RunInstancesRequest;
 import com.fit2cloud.qcloud.cvm.responses.DescribeInstancesResponse;
+import com.fit2cloud.qcloud.cvm.responses.DescribeProductRegionListResponse;
 import com.fit2cloud.qcloud.cvm.responses.RunInstancesResponse;
 import com.fit2cloud.qcloud.exceptions.QCloudClientException;
 import com.fit2cloud.qcloud.exceptions.QCloudServiceException;
@@ -34,6 +36,9 @@ public class QCloudClient {
     }
 
 //   cvm API
+    public DescribeProductRegionListResponse DescribeProductRegionList(DescribeProductRegionListRequest describeProductRegionListRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("DescribeProductRegionList", describeProductRegionListRequest.toMap()), DescribeProductRegionListResponse.class);
+    }
     public DescribeInstancesResponse DescribeInstances(DescribeInstancesRequest describeInstancesRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("DescribeInstances", describeInstancesRequest.toMap()), DescribeInstancesResponse.class);
     }
