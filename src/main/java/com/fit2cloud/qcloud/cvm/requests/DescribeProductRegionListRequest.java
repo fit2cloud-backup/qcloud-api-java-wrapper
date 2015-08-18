@@ -6,13 +6,13 @@ import com.fit2cloud.qcloud.CommonRequest;
  * Created by chixq on 8/17/15.
  */
 public class DescribeProductRegionListRequest extends CommonRequest {
-    private String instanceType;
+    private int instanceType;
 
-    public String getInstanceType() {
+    public int getInstanceType() {
         return instanceType;
     }
 
-    public void setInstanceType(String instanceType) {
+    public void setInstanceType(int instanceType) {
         this.instanceType = instanceType;
     }
 }

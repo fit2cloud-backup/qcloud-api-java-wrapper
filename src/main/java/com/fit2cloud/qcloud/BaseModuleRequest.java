@@ -75,7 +75,7 @@ public class BaseModuleRequest {
     protected void addCommonParams(String action, Map<String, String> parameters) {
         parameters.put("Action", action);
         parameters.put("SecretId", credentials.getSecretId());
-        parameters.put("Timestamp", String.valueOf(new Date().getTime()));
+        parameters.put("Timestamp", String.valueOf(new Date().getTime()).substring(0, 10));
         parameters.put("Nonce", String.valueOf(new Random().nextInt(Integer.MAX_VALUE)));
         parameters.put("Signature", computeSignature(parameters, credentials.getSecretKey()));
     }
