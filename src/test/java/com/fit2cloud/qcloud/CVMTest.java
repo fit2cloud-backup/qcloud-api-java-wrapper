@@ -1,8 +1,10 @@
 package com.fit2cloud.qcloud;
 
 import com.fit2cloud.qcloud.cvm.model.InstanceType;
+import com.fit2cloud.qcloud.cvm.requests.DescribeImagesRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeInstancesRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeProductRegionListRequest;
+import com.fit2cloud.qcloud.cvm.responses.DescribeImagesResponse;
 import com.fit2cloud.qcloud.cvm.responses.DescribeInstancesResponse;
 import com.fit2cloud.qcloud.cvm.responses.DescribeProductRegionListResponse;
 import com.fit2cloud.qcloud.exceptions.QCloudClientException;
@@ -21,7 +23,7 @@ public class CVMTest extends TestCase {
         String secretId = "";
         String secretKey = "";
         QCloudCredential qCloudCredential = new QCloudCredential(secretId, secretKey);
-        client = new QCloudClient(qCloudCredential, "cvm.api.qcloud.com/v2/index.php");
+        client = new QCloudClient(qCloudCredential, "image.api.qcloud.com/v2/index.php");
     }
 
     @Override
@@ -44,5 +46,14 @@ public class CVMTest extends TestCase {
         DescribeInstancesResponse describeInstancesResponse = new DescribeInstancesResponse();
         describeInstancesResponse = client.DescribeInstances(describeInstancesRequest);
         System.out.println(new Gson().toJson(describeInstancesResponse));
+    }
+
+    @Test
+    public void testDescribeImages() throws QCloudClientException, QCloudServiceException {
+        DescribeImagesRequest describeImagesRequest = new DescribeImagesRequest();
+        describeImagesRequest.setImageType(2);
+        describeImagesRequest.setRegion("sh");
+        DescribeImagesResponse describeImagesResponse = client.DescribeImages(describeImagesRequest);
+        System.out.println(new Gson().toJson(describeImagesResponse));
     }
 }

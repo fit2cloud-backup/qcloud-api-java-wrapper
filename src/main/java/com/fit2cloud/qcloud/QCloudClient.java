@@ -1,8 +1,10 @@
 package com.fit2cloud.qcloud;
 
+import com.fit2cloud.qcloud.cvm.requests.DescribeImagesRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeInstancesRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeProductRegionListRequest;
 import com.fit2cloud.qcloud.cvm.requests.RunInstancesRequest;
+import com.fit2cloud.qcloud.cvm.responses.DescribeImagesResponse;
 import com.fit2cloud.qcloud.cvm.responses.DescribeInstancesResponse;
 import com.fit2cloud.qcloud.cvm.responses.DescribeProductRegionListResponse;
 import com.fit2cloud.qcloud.cvm.responses.RunInstancesResponse;
@@ -47,5 +49,8 @@ public class QCloudClient {
         return gson.fromJson(this.request.execute("RunInstances", runInstancesRequest.toMap()), RunInstancesResponse.class);
     }
 
+    public DescribeImagesResponse DescribeImages(DescribeImagesRequest describeInstancesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("DescribeImages", describeInstancesRequest.toMap()), DescribeImagesResponse.class);
+    }
 }
 

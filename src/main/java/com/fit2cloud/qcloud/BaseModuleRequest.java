@@ -66,7 +66,7 @@ public class BaseModuleRequest {
                 return message;
             }
         } catch (IOException e) {
-            throw new QCloudClientException("Failed to connect to UCloud:" + e.getMessage());
+            throw new QCloudClientException("Failed to connect to QCloud:" + e.getMessage());
         } finally {
             safeClose(stream);
         }
