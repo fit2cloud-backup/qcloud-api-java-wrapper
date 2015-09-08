@@ -17,7 +17,7 @@ public class InstanceSet {
     private List<String> wanIpSet;
     private int cpu;
     private int mem;
-    private List<DiskInfo> diskInfo;
+//    private List<DiskInfo> diskInfo;
     private int bandwidth;
     private String deviceClass;
     private String imageId;
@@ -80,14 +80,6 @@ public class InstanceSet {
 
     public void setMem(int mem) {
         this.mem = mem;
-    }
-
-    public List<DiskInfo> getDiskInfo() {
-        return diskInfo;
-    }
-
-    public void setDiskInfo(List<DiskInfo> diskInfo) {
-        this.diskInfo = diskInfo;
     }
 
     public int getBandwidth() {
