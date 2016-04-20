@@ -20,8 +20,8 @@ public class CVMTest extends TestCase {
     private QCloudClient client;
     @Override
     public void setUp() throws Exception {
-        String secretId = "";
-        String secretKey = "";
+        String secretId = "AKIDNzL48jKkp0meXdcdWtpMcoLSzCrh8Ycy";
+        String secretKey = "uxdTovmCkJLogfgc5VQYBnga4uCSKbTz";
         QCloudCredential qCloudCredential = new QCloudCredential(secretId, secretKey);
         client = new QCloudClient(qCloudCredential, "image.api.qcloud.com/v2/index.php");
     }
@@ -51,7 +51,6 @@ public class CVMTest extends TestCase {
     @Test
     public void testDescribeImages() throws QCloudClientException, QCloudServiceException {
         DescribeImagesRequest describeImagesRequest = new DescribeImagesRequest();
-        describeImagesRequest.setImageType(2);
         describeImagesRequest.setRegion("sh");
         DescribeImagesResponse describeImagesResponse = client.DescribeImages(describeImagesRequest);
         System.out.println(new Gson().toJson(describeImagesResponse));
