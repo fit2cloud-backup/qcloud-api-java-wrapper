@@ -31,11 +31,26 @@ public class QCloudClient {
         this.request = new BaseModuleRequest(qcloudCredential, GlobalConst.DEFAULT_BASE_URL);
     }
 
-    //   cvm API
+    //   trade API
     public DescribeProductRegionListResponse DescribeProductRegionList(DescribeProductRegionListRequest describeProductRegionListRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("DescribeProductRegionList", describeProductRegionListRequest.toMap()), DescribeProductRegionListResponse.class);
     }
 
+    //   image API
+    public DescribeImagesResponse DescribeImages(DescribeImagesRequest describeInstancesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("DescribeImages", describeInstancesRequest.toMap()), DescribeImagesResponse.class);
+    }
+
+    public CreateImageResponse CreateImage(CreateImageRequest createImageRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("CreateImage", createImageRequest.toMap()), CreateImageResponse.class);
+    }
+
+    public DeleteImagesResponse DeleteImages(DeleteImagesRequest deleteImagesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("DeleteImages", deleteImagesRequest.toMap()), DeleteImagesResponse.class);
+    }
+
+
+    //   cvm API
     public DescribeInstancesResponse DescribeInstances(DescribeInstancesRequest describeInstancesRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("DescribeInstances", describeInstancesRequest.toMap()), DescribeInstancesResponse.class);
     }
@@ -44,9 +59,6 @@ public class QCloudClient {
         return gson.fromJson(this.request.execute("RunInstances", runInstancesRequest.toMap()), RunInstancesResponse.class);
     }
 
-    public DescribeImagesResponse DescribeImages(DescribeImagesRequest describeInstancesRequest) throws QCloudClientException, QCloudServiceException {
-        return gson.fromJson(this.request.execute("DescribeImages", describeInstancesRequest.toMap()), DescribeImagesResponse.class);
-    }
 
     public RunInstancesHourResponse RunInstancesHour(RunInstancesHourRequest runInstancesHourRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("RunInstancesHour", runInstancesHourRequest.toMap()), RunInstancesHourResponse.class);
