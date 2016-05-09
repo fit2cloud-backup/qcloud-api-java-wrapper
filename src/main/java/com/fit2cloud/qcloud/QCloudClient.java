@@ -1,13 +1,7 @@
 package com.fit2cloud.qcloud;
 
-import com.fit2cloud.qcloud.cvm.requests.DescribeImagesRequest;
-import com.fit2cloud.qcloud.cvm.requests.DescribeInstancesRequest;
-import com.fit2cloud.qcloud.cvm.requests.DescribeProductRegionListRequest;
-import com.fit2cloud.qcloud.cvm.requests.RunInstancesRequest;
-import com.fit2cloud.qcloud.cvm.responses.DescribeImagesResponse;
-import com.fit2cloud.qcloud.cvm.responses.DescribeInstancesResponse;
-import com.fit2cloud.qcloud.cvm.responses.DescribeProductRegionListResponse;
-import com.fit2cloud.qcloud.cvm.responses.RunInstancesResponse;
+import com.fit2cloud.qcloud.cvm.requests.*;
+import com.fit2cloud.qcloud.cvm.responses.*;
 import com.fit2cloud.qcloud.exceptions.QCloudClientException;
 import com.fit2cloud.qcloud.exceptions.QCloudServiceException;
 import com.fit2cloud.qcloud.util.GlobalConst;
@@ -37,10 +31,11 @@ public class QCloudClient {
         this.request = new BaseModuleRequest(qcloudCredential, GlobalConst.DEFAULT_BASE_URL);
     }
 
-//   cvm API
+    //   cvm API
     public DescribeProductRegionListResponse DescribeProductRegionList(DescribeProductRegionListRequest describeProductRegionListRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("DescribeProductRegionList", describeProductRegionListRequest.toMap()), DescribeProductRegionListResponse.class);
     }
+
     public DescribeInstancesResponse DescribeInstances(DescribeInstancesRequest describeInstancesRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("DescribeInstances", describeInstancesRequest.toMap()), DescribeInstancesResponse.class);
     }
@@ -51,6 +46,22 @@ public class QCloudClient {
 
     public DescribeImagesResponse DescribeImages(DescribeImagesRequest describeInstancesRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("DescribeImages", describeInstancesRequest.toMap()), DescribeImagesResponse.class);
+    }
+
+    public RunInstancesHourResponse RunInstancesHour(RunInstancesRequest runInstancesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("RunInstancesHour", runInstancesRequest.toMap()), RunInstancesHourResponse.class);
+    }
+
+    public DescribeKeyPairsResponse DescribeKeyPairs(DescribeKeyPairsRequest describeKeyPairsRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("DescribeKeyPairs", describeKeyPairsRequest.toMap()), DescribeKeyPairsResponse.class);
+    }
+
+    public StartInstanceResponse StartInstance(StartInstancesRequest startInstancesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("StartInstance", startInstancesRequest.toMap()), StartInstanceResponse.class);
+    }
+
+    public StopInstanceResponse StopInstance(StopInstanceRequest stopInstanceRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("StopInstance", stopInstanceRequest.toMap()), StopInstanceResponse.class);
     }
 }
 

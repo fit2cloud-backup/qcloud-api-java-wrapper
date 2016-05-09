@@ -1,10 +1,9 @@
 package com.fit2cloud.qcloud;
 
 import com.fit2cloud.qcloud.cvm.model.InstanceType;
-import com.fit2cloud.qcloud.cvm.requests.DescribeImagesRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeInstancesRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeProductRegionListRequest;
-import com.fit2cloud.qcloud.cvm.responses.DescribeImagesResponse;
+import com.fit2cloud.qcloud.cvm.requests.RunInstancesHourRequest;
 import com.fit2cloud.qcloud.cvm.responses.DescribeInstancesResponse;
 import com.fit2cloud.qcloud.cvm.responses.DescribeProductRegionListResponse;
 import com.fit2cloud.qcloud.exceptions.QCloudClientException;
@@ -18,12 +17,13 @@ import org.junit.Test;
  */
 public class CVMTest extends TestCase {
     private QCloudClient client;
+
     @Override
     public void setUp() throws Exception {
-        String secretId = "AKIDNzL48jKkp0meXdcdWtpMcoLSzCrh8Ycy";
-        String secretKey = "uxdTovmCkJLogfgc5VQYBnga4uCSKbTz";
+        String secretId = System.getenv("QCLOUD_SECRET_ID");
+        String secretKey = System.getenv("QCLOUD_SECRET_KEY");
         QCloudCredential qCloudCredential = new QCloudCredential(secretId, secretKey);
-        client = new QCloudClient(qCloudCredential, "image.api.qcloud.com/v2/index.php");
+        client = new QCloudClient(qCloudCredential, "cvm.api.qcloud.com/v2/index.php");
     }
 
     @Override
@@ -49,10 +49,17 @@ public class CVMTest extends TestCase {
     }
 
     @Test
-    public void testDescribeImages() throws QCloudClientException, QCloudServiceException {
-        DescribeImagesRequest describeImagesRequest = new DescribeImagesRequest();
-        describeImagesRequest.setRegion("sh");
-        DescribeImagesResponse describeImagesResponse = client.DescribeImages(describeImagesRequest);
-        System.out.println(new Gson().toJson(describeImagesResponse));
+    public void testRunInstanceHour() throws QCloudClientException, QCloudServiceException {
+        RunInstancesHourRequest runInstancesHourRequest = new RunInstancesHourRequest();
+        runInstancesHourRequest.setBandwidth(1);
+        runInstancesHourRequest.setRegion("sh");
+        runInstancesHourRequest.setImageType(2);
+        runInstancesHourRequest.setImageId(18);
+        runInstancesHourRequest.setBandwidthType("PayByTraffic");
+        runInstancesHourRequest.setCpu(1);
+        runInstancesHourRequest.setMem(1);
+        runInstancesHourRequest.setGoodsNum(1);
+        runInstancesHourRequest.setStorageSize(20);
+        runInstancesHourRequest.setZoneId(1);
     }
 }
