@@ -16,8 +16,8 @@ public class ImageTest extends TestCase {
 
     @Override
     public void setUp() throws Exception {
-        String secretId = "AKIDNzL48jKkp0meXdcdWtpMcoLSzCrh8Ycy";
-        String secretKey = "uxdTovmCkJLogfgc5VQYBnga4uCSKbTz";
+        String secretId = System.getenv("QCLOUD_SECRET_ID");
+        String secretKey = System.getenv("QCLOUD_SECRET_KEY");
         QCloudCredential qCloudCredential = new QCloudCredential(secretId, secretKey);
         client = new QCloudClient(qCloudCredential, "image.api.qcloud.com/v2/index.php");
     }

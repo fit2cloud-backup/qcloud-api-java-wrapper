@@ -1,11 +1,13 @@
 package com.fit2cloud.qcloud;
 
-import com.fit2cloud.qcloud.cvm.model.InstanceType;
+import com.fit2cloud.qcloud.cvm.requests.DescribeAvailabilityZonesRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeInstancesRequest;
-import com.fit2cloud.qcloud.cvm.requests.DescribeProductRegionListRequest;
+import com.fit2cloud.qcloud.cvm.requests.ReturnInstanceRequest;
 import com.fit2cloud.qcloud.cvm.requests.RunInstancesHourRequest;
+import com.fit2cloud.qcloud.cvm.responses.DescribeAvailabilityZonesResponse;
 import com.fit2cloud.qcloud.cvm.responses.DescribeInstancesResponse;
-import com.fit2cloud.qcloud.cvm.responses.DescribeProductRegionListResponse;
+import com.fit2cloud.qcloud.cvm.responses.ReturnInstanceResponse;
+import com.fit2cloud.qcloud.cvm.responses.RunInstancesHourResponse;
 import com.fit2cloud.qcloud.exceptions.QCloudClientException;
 import com.fit2cloud.qcloud.exceptions.QCloudServiceException;
 import com.google.gson.Gson;
@@ -31,13 +33,14 @@ public class CVMTest extends TestCase {
     }
 
     @Test
-    public void testDescribeProductRegionList() throws Exception {
-        DescribeProductRegionListRequest request = new DescribeProductRegionListRequest();
-        request.setInstanceType(InstanceType.HOST);
-        DescribeProductRegionListResponse response = client.DescribeProductRegionList(request);
-        System.out.println(response.getAvailableRegion().keySet());
-        System.out.println(new Gson().toJson(response));
+    public void testDescribeAvailableZones() throws Exception {
+        DescribeAvailabilityZonesRequest describeAvailabilityZonesRequest = new DescribeAvailabilityZonesRequest();
+        describeAvailabilityZonesRequest.setRegion("sh");
+        DescribeAvailabilityZonesResponse describeAvailabilityZonesResponse = this.client.DescribeAvailabilityZones(describeAvailabilityZonesRequest);
+        System.out.println(new Gson().toJson(describeAvailabilityZonesResponse));
+
     }
+
 
     @Test
     public void testDescribeInstance() throws QCloudClientException, QCloudServiceException {
@@ -51,15 +54,26 @@ public class CVMTest extends TestCase {
     @Test
     public void testRunInstanceHour() throws QCloudClientException, QCloudServiceException {
         RunInstancesHourRequest runInstancesHourRequest = new RunInstancesHourRequest();
-        runInstancesHourRequest.setBandwidth(1);
         runInstancesHourRequest.setRegion("sh");
         runInstancesHourRequest.setImageType(2);
-        runInstancesHourRequest.setImageId(18);
-        runInstancesHourRequest.setBandwidthType("PayByTraffic");
+        runInstancesHourRequest.setImageId(1);
+        runInstancesHourRequest.setBandwidth(1);
         runInstancesHourRequest.setCpu(1);
         runInstancesHourRequest.setMem(1);
         runInstancesHourRequest.setGoodsNum(1);
+        runInstancesHourRequest.setStorageType(1);
         runInstancesHourRequest.setStorageSize(20);
-        runInstancesHourRequest.setZoneId(1);
+        runInstancesHourRequest.setZoneId(200001);
+        RunInstancesHourResponse runInstancesHourResponse = this.client.RunInstancesHour(runInstancesHourRequest);
+        System.out.println(new Gson().toJson(runInstancesHourResponse));
+    }
+
+    @Test
+    public void testReturnInstance() throws QCloudClientException, QCloudServiceException {
+        ReturnInstanceRequest returnInstanceRequest = new ReturnInstanceRequest();
+        returnInstanceRequest.setInstanceId("ins-pwamztyh");
+        returnInstanceRequest.setRegion("sh");
+        ReturnInstanceResponse returnInstanceResponse = this.client.ReturnInstance(returnInstanceRequest);
+        System.out.println(new Gson().toJson(returnInstanceResponse));
     }
 }

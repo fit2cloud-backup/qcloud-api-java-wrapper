@@ -6,7 +6,7 @@ import com.fit2cloud.qcloud.CommonRequest;
  * Created by chixq on 8/17/15.
  */
 public class DescribeProductRegionListRequest extends CommonRequest {
-    private int instanceType;
+    private int instanceType=1;
 
     public int getInstanceType() {
         return instanceType;

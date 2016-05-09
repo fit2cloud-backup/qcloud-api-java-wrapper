@@ -48,8 +48,8 @@ public class QCloudClient {
         return gson.fromJson(this.request.execute("DescribeImages", describeInstancesRequest.toMap()), DescribeImagesResponse.class);
     }
 
-    public RunInstancesHourResponse RunInstancesHour(RunInstancesRequest runInstancesRequest) throws QCloudClientException, QCloudServiceException {
-        return gson.fromJson(this.request.execute("RunInstancesHour", runInstancesRequest.toMap()), RunInstancesHourResponse.class);
+    public RunInstancesHourResponse RunInstancesHour(RunInstancesHourRequest runInstancesHourRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("RunInstancesHour", runInstancesHourRequest.toMap()), RunInstancesHourResponse.class);
     }
 
     public DescribeKeyPairsResponse DescribeKeyPairs(DescribeKeyPairsRequest describeKeyPairsRequest) throws QCloudClientException, QCloudServiceException {
@@ -62,6 +62,14 @@ public class QCloudClient {
 
     public StopInstanceResponse StopInstance(StopInstanceRequest stopInstanceRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("StopInstance", stopInstanceRequest.toMap()), StopInstanceResponse.class);
+    }
+
+    public DescribeAvailabilityZonesResponse DescribeAvailabilityZones(DescribeAvailabilityZonesRequest describeAvailabilityZonesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("DescribeAvailabilityZones", describeAvailabilityZonesRequest.toMap()), DescribeAvailabilityZonesResponse.class);
+    }
+
+    public ReturnInstanceResponse ReturnInstance(ReturnInstanceRequest returnInstanceRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("ReturnInstance", returnInstanceRequest.toMap()), ReturnInstanceResponse.class);
     }
 }
 
