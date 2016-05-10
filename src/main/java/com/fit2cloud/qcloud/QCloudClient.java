@@ -83,5 +83,9 @@ public class QCloudClient {
     public ReturnInstanceResponse ReturnInstance(ReturnInstanceRequest returnInstanceRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("ReturnInstance", returnInstanceRequest.toMap()), ReturnInstanceResponse.class);
     }
+
+    public DescribeSecurityGroupsResponse DescribeSecurityGroups(DescribeSecurityGroupsRequest describeSecurityGroupsRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("DescribeSecurityGroups", describeSecurityGroupsRequest.toMap()), DescribeSecurityGroupsResponse.class);
+    }
 }
 

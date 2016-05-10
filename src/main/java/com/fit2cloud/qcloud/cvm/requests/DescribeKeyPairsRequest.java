@@ -13,8 +13,21 @@ import java.util.Map;
 public class DescribeKeyPairsRequest extends CommonRequest {
     private List<String> keyIds;
     private String keyName;
-    private String offset;
-    private String limit;
+    private int offset;
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    private int limit;
 
     public List<String> getKeyIds() {
         return keyIds;
@@ -32,20 +45,8 @@ public class DescribeKeyPairsRequest extends CommonRequest {
         this.keyName = keyName;
     }
 
-    public String getOffset() {
+    public int getOffset() {
         return offset;
-    }
-
-    public void setOffset(String offset) {
-        this.offset = offset;
-    }
-
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        this.limit = limit;
     }
 
     @Override
