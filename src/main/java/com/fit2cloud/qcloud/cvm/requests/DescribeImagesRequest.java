@@ -11,17 +11,17 @@ import java.util.Map;
  * Created by chixq on 9/8/15.
  */
 public class DescribeImagesRequest extends CommonRequest {
-    private List<Integer> imagesIds;
+    private List<String> imagesIds;
     private Integer status;
     private int imageType;
     private Integer offset;
     private Integer limit;
 
-    public List<Integer> getImagesIds() {
+    public List<String> getImagesIds() {
         return imagesIds;
     }
 
-    public void setImagesIds(List<Integer> imagesIds) {
+    public void setImagesIds(List<String> imagesIds) {
         this.imagesIds = imagesIds;
     }
 
@@ -63,7 +63,7 @@ public class DescribeImagesRequest extends CommonRequest {
 
         if (imagesIds != null) {
             int i = 0;
-            for (int imageId: imagesIds) {
+            for (String imageId: imagesIds) {
                 map.put("imagesIds." + i, String.valueOf(imageId));
                 i ++;
             }

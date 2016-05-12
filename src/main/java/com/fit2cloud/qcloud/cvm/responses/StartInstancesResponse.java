@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by chixq on 5/9/16.
  */
-public class StopInstanceResponse extends CommonResponse {
+public class StartInstancesResponse extends CommonResponse {
     private HashMap<String, AsyncResponse> detail;
 
     public HashMap<String, AsyncResponse> getDetail() {
@@ -24,4 +24,5 @@ public class StopInstanceResponse extends CommonResponse {
                 "detail=" + detail +
                 '}';
     }
+
 }

@@ -7,7 +7,7 @@ import com.fit2cloud.qcloud.CommonRequest;
  */
 public class RunInstancesHourRequest extends CommonRequest {
     private int imageType;
-    private int imageId;
+    private String imageId;
     private int cpu;
     private int mem;
     private int bandwidth;
@@ -31,7 +31,7 @@ public class RunInstancesHourRequest extends CommonRequest {
         return imageType;
     }
 
-    public int getImageId() {
+    public String getImageId() {
         return imageId;
     }
 
@@ -111,7 +111,7 @@ public class RunInstancesHourRequest extends CommonRequest {
         this.imageType = imageType;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(String imageId) {
         this.imageId = imageId;
     }
 

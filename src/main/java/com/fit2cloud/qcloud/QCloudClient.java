@@ -68,12 +68,12 @@ public class QCloudClient {
         return gson.fromJson(this.request.execute("DescribeKeyPairs", describeKeyPairsRequest.toMap()), DescribeKeyPairsResponse.class);
     }
 
-    public StartInstanceResponse StartInstance(StartInstancesRequest startInstancesRequest) throws QCloudClientException, QCloudServiceException {
-        return gson.fromJson(this.request.execute("StartInstance", startInstancesRequest.toMap()), StartInstanceResponse.class);
+    public StartInstancesResponse StartInstance(StartInstancesRequest startInstancesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("StartInstances", startInstancesRequest.toMap()), StartInstancesResponse.class);
     }
 
-    public StopInstanceResponse StopInstance(StopInstanceRequest stopInstanceRequest) throws QCloudClientException, QCloudServiceException {
-        return gson.fromJson(this.request.execute("StopInstance", stopInstanceRequest.toMap()), StopInstanceResponse.class);
+    public StopInstancesResponse StopInstances(StopInstancesRequest stopInstancesRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("StopInstances", stopInstancesRequest.toMap()), StopInstancesResponse.class);
     }
 
     public DescribeAvailabilityZonesResponse DescribeAvailabilityZones(DescribeAvailabilityZonesRequest describeAvailabilityZonesRequest) throws QCloudClientException, QCloudServiceException {

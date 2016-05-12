@@ -1,18 +1,14 @@
 package com.fit2cloud.qcloud;
 
-import com.fit2cloud.qcloud.cvm.requests.DescribeAvailabilityZonesRequest;
-import com.fit2cloud.qcloud.cvm.requests.DescribeInstancesRequest;
-import com.fit2cloud.qcloud.cvm.requests.ReturnInstanceRequest;
-import com.fit2cloud.qcloud.cvm.requests.RunInstancesHourRequest;
-import com.fit2cloud.qcloud.cvm.responses.DescribeAvailabilityZonesResponse;
-import com.fit2cloud.qcloud.cvm.responses.DescribeInstancesResponse;
-import com.fit2cloud.qcloud.cvm.responses.ReturnInstanceResponse;
-import com.fit2cloud.qcloud.cvm.responses.RunInstancesHourResponse;
+import com.fit2cloud.qcloud.cvm.requests.*;
+import com.fit2cloud.qcloud.cvm.responses.*;
 import com.fit2cloud.qcloud.exceptions.QCloudClientException;
 import com.fit2cloud.qcloud.exceptions.QCloudServiceException;
 import com.google.gson.Gson;
 import junit.framework.TestCase;
 import org.junit.Test;
+
+import java.util.Collections;
 
 /**
  * Created by chixq on 8/17/15.
@@ -41,6 +37,25 @@ public class CVMTest extends TestCase {
 
     }
 
+    @Test
+    public void testDescribeKeypair() throws QCloudClientException, QCloudServiceException {
+        DescribeKeyPairsRequest describeKeyPairsRequest = new DescribeKeyPairsRequest();
+        describeKeyPairsRequest.setRegion("sh");
+        describeKeyPairsRequest.setLimit(20);
+        describeKeyPairsRequest.setOffset(0);
+        DescribeKeyPairsResponse describeKeyPairsResponse = client.DescribeKeyPairs(describeKeyPairsRequest);
+        System.out.println(new Gson().toJson(describeKeyPairsResponse));
+    }
+
+    @Test
+    public void testDescribeSecurityGroups() throws QCloudClientException, QCloudServiceException {
+        DescribeSecurityGroupsRequest describeSecurityGroupsRequest = new DescribeSecurityGroupsRequest();
+        describeSecurityGroupsRequest.setRegion("sh");
+        DescribeSecurityGroupsResponse describeSecurityGroupsResponse = client.DescribeSecurityGroups(describeSecurityGroupsRequest);
+        System.out.println(new Gson().toJson(describeSecurityGroupsResponse));
+
+
+    }
 
     @Test
     public void testDescribeInstance() throws QCloudClientException, QCloudServiceException {
@@ -56,7 +71,7 @@ public class CVMTest extends TestCase {
         RunInstancesHourRequest runInstancesHourRequest = new RunInstancesHourRequest();
         runInstancesHourRequest.setRegion("sh");
         runInstancesHourRequest.setImageType(2);
-        runInstancesHourRequest.setImageId(1);
+        runInstancesHourRequest.setImageId("1");
         runInstancesHourRequest.setBandwidth(1);
         runInstancesHourRequest.setCpu(1);
         runInstancesHourRequest.setMem(1);
@@ -66,6 +81,16 @@ public class CVMTest extends TestCase {
         runInstancesHourRequest.setZoneId(200001);
         RunInstancesHourResponse runInstancesHourResponse = this.client.RunInstancesHour(runInstancesHourRequest);
         System.out.println(new Gson().toJson(runInstancesHourResponse));
+    }
+
+    @Test
+    public void testStopInstance() throws QCloudClientException, QCloudServiceException {
+        StopInstancesRequest stopInstancesRequest = new StopInstancesRequest();
+        stopInstancesRequest.setForceStop("1");
+        stopInstancesRequest.setInstanceIds(Collections.singletonList("ins-etj2spif"));
+        stopInstancesRequest.setRegion("sh");
+        StopInstancesResponse stopInstancesResponse = client.StopInstances(stopInstancesRequest);
+        System.out.println(new Gson().toJson(stopInstancesResponse));
     }
 
     @Test

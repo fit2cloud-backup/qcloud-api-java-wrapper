@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by chixq on 5/9/16.
  */
-public class StopInstanceRequest extends CommonRequest {
+public class StopInstancesRequest extends CommonRequest {
     private List<String> instanceIds;
     private String forceStop;
 

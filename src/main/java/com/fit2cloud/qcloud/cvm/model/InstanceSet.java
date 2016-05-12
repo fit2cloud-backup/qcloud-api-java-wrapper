@@ -23,6 +23,8 @@ public class InstanceSet {
     private String imageId;
     private int status;
     private String projectId;
+    private String os;
+
     private String Region;
     private String createTime;
     private String statusTime;
@@ -33,6 +35,14 @@ public class InstanceSet {
     private String vpcId;
     private String subnetId;
     private String isVpcGateway;
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
 
     public String getInstanceName() {
         return instanceName;

@@ -1,6 +1,8 @@
 package com.fit2cloud.qcloud;
 
+import com.fit2cloud.qcloud.cvm.requests.CreateImageRequest;
 import com.fit2cloud.qcloud.cvm.requests.DescribeImagesRequest;
+import com.fit2cloud.qcloud.cvm.responses.CreateImageResponse;
 import com.fit2cloud.qcloud.cvm.responses.DescribeImagesResponse;
 import com.fit2cloud.qcloud.exceptions.QCloudClientException;
 import com.fit2cloud.qcloud.exceptions.QCloudServiceException;
@@ -33,5 +35,16 @@ public class ImageTest extends TestCase {
         describeImagesRequest.setImageType(2);
         DescribeImagesResponse describeImagesResponse = client.DescribeImages(describeImagesRequest);
         System.out.println(new Gson().toJson(describeImagesResponse));
+    }
+
+    @Test
+    public void testCreateImage() throws QCloudClientException, QCloudServiceException {
+        CreateImageRequest createImageRequest = new CreateImageRequest();
+        createImageRequest.setImageDescription("Test");
+        createImageRequest.setImageName("Test");
+        createImageRequest.setRegion("sh");
+        createImageRequest.setInstanceId("ins-etj2spif");
+        CreateImageResponse createImageResponse = client.CreateImage(createImageRequest);
+        System.out.println(new Gson().toJson(createImageResponse));
     }
 }
