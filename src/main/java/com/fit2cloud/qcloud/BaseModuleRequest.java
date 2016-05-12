@@ -49,7 +49,7 @@ public class BaseModuleRequest {
             String query = paramsToQueryString(parameters);
             URL url = new URL("https://" + endpoint + "?" + query);
             DefaultHttpClient client = new DefaultHttpClient();
-            System.out.println(url.toString());
+//            System.out.println(url.toString());
             HttpGet request = new HttpGet(url.toString());
             HttpResponse response = client.execute(request);
             if (response.getStatusLine().getStatusCode() >= 400) {
@@ -88,7 +88,7 @@ public class BaseModuleRequest {
             sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
         }
         sb.deleteCharAt(sb.length() - 1);
-        System.out.println(sb.toString());
+//        System.out.println(sb.toString());
         try {
             return QSign.sign(sb.toString(), privateKey);
         } catch (NoSuchAlgorithmException e) {
