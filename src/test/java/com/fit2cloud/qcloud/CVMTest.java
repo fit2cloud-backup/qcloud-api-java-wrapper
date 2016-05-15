@@ -61,6 +61,7 @@ public class CVMTest extends TestCase {
     public void testDescribeInstance() throws QCloudClientException, QCloudServiceException {
         DescribeInstancesRequest describeInstancesRequest = new DescribeInstancesRequest();
         describeInstancesRequest.setRegion("sh");
+        describeInstancesRequest.setInstanceIds(Collections.singletonList("ins-897e5ofb"));
         DescribeInstancesResponse describeInstancesResponse = new DescribeInstancesResponse();
         describeInstancesResponse = client.DescribeInstances(describeInstancesRequest);
         System.out.println(new Gson().toJson(describeInstancesResponse));
@@ -96,7 +97,7 @@ public class CVMTest extends TestCase {
     @Test
     public void testReturnInstance() throws QCloudClientException, QCloudServiceException {
         ReturnInstanceRequest returnInstanceRequest = new ReturnInstanceRequest();
-        returnInstanceRequest.setInstanceId("ins-pwamztyh");
+        returnInstanceRequest.setInstanceId("qcvm3eaff96a31c8c5b39aec42d7f4fa9a7e");
         returnInstanceRequest.setRegion("sh");
         ReturnInstanceResponse returnInstanceResponse = this.client.ReturnInstance(returnInstanceRequest);
         System.out.println(new Gson().toJson(returnInstanceResponse));

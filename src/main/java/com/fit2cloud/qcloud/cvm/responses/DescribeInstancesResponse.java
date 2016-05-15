@@ -38,5 +38,11 @@ public class DescribeInstancesResponse extends CommonResponse {
         return new Gson().fromJson(json, DescribeInstancesResponse.class);
     }
 
-
+    @Override
+    public String toString() {
+        return "DescribeInstancesResponse{" +
+                "totalCount=" + totalCount +
+                ", instanceSet=" + instanceSet +
+                '}';
+    }
 }

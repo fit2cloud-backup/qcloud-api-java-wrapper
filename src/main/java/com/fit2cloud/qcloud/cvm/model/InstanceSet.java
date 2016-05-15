@@ -13,6 +13,7 @@ public class InstanceSet {
 
     private String instanceName;
     private String instanceId;
+    private String unInstanceId;
     private String lanIp;
     private List<String> wanIpSet;
     private int cpu;
@@ -209,6 +210,44 @@ public class InstanceSet {
     }
 
     public void setIsVpcGateway(String isVpcGateway) {
+
         this.isVpcGateway = isVpcGateway;
+    }
+
+    public String getUnInstanceId() {
+        return unInstanceId;
+    }
+
+    public void setUnInstanceId(String unInstanceId) {
+        this.unInstanceId = unInstanceId;
+    }
+
+    @Override
+    public String toString() {
+        return "InstanceSet{" +
+                "instanceName='" + instanceName + '\'' +
+                ", instanceId='" + instanceId + '\'' +
+                ", unInstanceId='" + unInstanceId + '\'' +
+                ", lanIp='" + lanIp + '\'' +
+                ", wanIpSet=" + wanIpSet +
+                ", cpu=" + cpu +
+                ", mem=" + mem +
+                ", bandwidth=" + bandwidth +
+                ", deviceClass='" + deviceClass + '\'' +
+                ", imageId='" + imageId + '\'' +
+                ", status=" + status +
+                ", projectId='" + projectId + '\'' +
+                ", os='" + os + '\'' +
+                ", Region='" + Region + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", statusTime='" + statusTime + '\'' +
+                ", deadlineTime='" + deadlineTime + '\'' +
+                ", autoRenew=" + autoRenew +
+                ", zoneId=" + zoneId +
+                ", zoneName='" + zoneName + '\'' +
+                ", vpcId='" + vpcId + '\'' +
+                ", subnetId='" + subnetId + '\'' +
+                ", isVpcGateway='" + isVpcGateway + '\'' +
+                '}';
     }
 }

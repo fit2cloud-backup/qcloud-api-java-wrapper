@@ -11,16 +11,16 @@ import java.util.Map;
  * Created by chixq on 5/9/16.
  */
 public class DeleteImagesRequest extends CommonRequest {
-    private List<String> instanceIds;
+    private List<String> imageIds;
     private String imageName;
     private String imageDescription;
 
-    public List<String> getInstanceIds() {
-        return instanceIds;
+    public List<String> getImageIds() {
+        return imageIds;
     }
 
-    public void setInstanceIds(List<String> instanceIds) {
-        this.instanceIds = instanceIds;
+    public void setImageIds(List<String> imageIds) {
+        this.imageIds = imageIds;
     }
 
     public String getImageName() {
@@ -42,7 +42,7 @@ public class DeleteImagesRequest extends CommonRequest {
     @Override
     public String toString() {
         return "DeleteImagesRequest{" +
-                "instanceIds=" + instanceIds +
+                "instanceIds=" + imageIds +
                 ", imageName='" + imageName + '\'' +
                 ", imageDescription='" + imageDescription + '\'' +
                 '}';
@@ -53,13 +53,13 @@ public class DeleteImagesRequest extends CommonRequest {
         Map<String, String> map = new Gson().fromJson(new Gson().toJson(this), new TypeToken<Map<String, String>>() {
         }.getType());
 
-        if (instanceIds != null) {
+        if (imageIds != null) {
             int i = 0;
-            for (String imageId : instanceIds) {
-                map.put("instanceIds." + i, String.valueOf(imageId));
+            for (String imageId : imageIds) {
+                map.put("imageIds." + i, String.valueOf(imageId));
                 i++;
             }
-            map.remove("instanceIds");
+            map.remove("imageIds");
         }
         return map;
     }
