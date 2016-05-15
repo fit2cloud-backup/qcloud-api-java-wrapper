@@ -87,5 +87,9 @@ public class QCloudClient {
     public DescribeSecurityGroupsResponse DescribeSecurityGroups(DescribeSecurityGroupsRequest describeSecurityGroupsRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("DescribeSecurityGroups", describeSecurityGroupsRequest.toMap()), DescribeSecurityGroupsResponse.class);
     }
+
+    public ModifySecurityGroupsOfInstanceResponse ModifySecurityGroupsOfInstance(ModifySecurityGroupsOfInstanceRequest modifySecurityGroupsOfInstanceRequest) throws QCloudClientException, QCloudServiceException {
+        return gson.fromJson(this.request.execute("ModifySecurityGroupsOfInstance", modifySecurityGroupsOfInstanceRequest.toMap()), ModifySecurityGroupsOfInstanceResponse.class);
+    }
 }
 
