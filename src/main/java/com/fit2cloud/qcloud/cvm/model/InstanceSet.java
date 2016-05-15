@@ -14,6 +14,16 @@ public class InstanceSet {
     private String instanceName;
     private String instanceId;
     private String unInstanceId;
+
+    public String getUnImgId() {
+        return unImgId;
+    }
+
+    public void setUnImgId(String unImgId) {
+        this.unImgId = unImgId;
+    }
+
+    private String unImgId;
     private String lanIp;
     private List<String> wanIpSet;
     private int cpu;
@@ -228,6 +238,7 @@ public class InstanceSet {
                 "instanceName='" + instanceName + '\'' +
                 ", instanceId='" + instanceId + '\'' +
                 ", unInstanceId='" + unInstanceId + '\'' +
+                ", unImgId='" + unImgId + '\'' +
                 ", lanIp='" + lanIp + '\'' +
                 ", wanIpSet=" + wanIpSet +
                 ", cpu=" + cpu +
