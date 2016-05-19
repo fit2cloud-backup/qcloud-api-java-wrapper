@@ -5,6 +5,7 @@ package com.fit2cloud.qcloud.cvm.model;
  */
 public class ImageSet {
     private int imageId;
+    private String unImgId;
     private String imageName;
     private String imageDescription;
     private int imageType;
@@ -12,6 +13,14 @@ public class ImageSet {
     private String createTime;
     private int creator;
     private int status;
+
+    public String getUnImgId() {
+        return unImgId;
+    }
+
+    public void setUnImgId(String unImgId) {
+        this.unImgId = unImgId;
+    }
 
     public int getImageId() {
         return imageId;
