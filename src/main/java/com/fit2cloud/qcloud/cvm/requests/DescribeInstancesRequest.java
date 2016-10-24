@@ -21,7 +21,7 @@ public class DescribeInstancesRequest extends CommonRequest {
     private List<String> lanIps;
     private int offset;
     private int limit = 20;
-    private int status;
+    private Integer status;
 
 
     public String getSearchWord() {
@@ -64,11 +64,11 @@ public class DescribeInstancesRequest extends CommonRequest {
         this.limit = limit;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
 
         this.status = status;
     }
