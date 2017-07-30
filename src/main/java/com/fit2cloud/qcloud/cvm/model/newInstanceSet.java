@@ -13,6 +13,7 @@ public class newInstanceSet {
 
     private String CreatedTime;
     private String InstanceId;
+    private String regionId;
     private List<String> PrivateIpAddresses;
     private int Memory;
     private String InstanceChargeType;
@@ -169,6 +170,14 @@ public class newInstanceSet {
 
     public void seInstanceIdt(String InstanceId) {
         this.InstanceId = InstanceId;
+    }
+    
+    public String getRegionId() {
+        return regionId;
+    }
+
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
     }
     
     
