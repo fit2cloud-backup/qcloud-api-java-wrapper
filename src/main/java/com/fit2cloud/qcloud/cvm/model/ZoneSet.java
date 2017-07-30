@@ -7,38 +7,57 @@ import java.util.List;
  */
 public class ZoneSet {
     private String zoneName;
-    private List<IDCList> idcList;
+    //private List<IDCList> idcList;
     private int zoneId;
+    private String zone;
+    private String zoneState;
 
-    public String getZoneName() {
+    public String getzoneName() {
         return zoneName;
     }
 
-    public void setZoneName(String zoneName) {
+    public void setzoneName(String zoneName) {
         this.zoneName = zoneName;
     }
 
-    public List<IDCList> getIdcList() {
-        return idcList;
-    }
+//    public List<IDCList> getIdcList() {
+//        return idcList;
+//    }
+//
+//    public void setIdcList(List<IDCList> idcList) {
+//        this.idcList = idcList;
+//    }
 
-    public void setIdcList(List<IDCList> idcList) {
-        this.idcList = idcList;
-    }
-
-    public int getZoneId() {
+    public int getzoneId() {
         return zoneId;
     }
 
-    public void setZoneId(int zoneId) {
+    public void setzoneId(int zoneId) {
         this.zoneId = zoneId;
     }
 
+    public String getZone() {
+        return zone;
+    }
+
+    public void setZone(String Zone) {
+        this.zone = Zone;
+    }
+    
+    public String getzoneState() {
+        return zoneState;
+    }
+
+    public void setzoneState(String zoneState) {
+        this.zoneState = zoneState;
+    }
+    
+    
     @Override
     public String toString() {
         return "ZoneSet{" +
                 "zoneName='" + zoneName + '\'' +
-                ", idcList=" + idcList +
+                ", Zone=" + zone +
                 ", zoneId=" + zoneId +
                 '}';
     }

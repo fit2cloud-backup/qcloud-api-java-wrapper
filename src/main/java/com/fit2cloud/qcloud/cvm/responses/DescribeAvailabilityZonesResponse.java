@@ -9,15 +9,15 @@ import java.util.List;
  * Created by chixq on 5/9/16.
  */
 public class DescribeAvailabilityZonesResponse extends CommonResponse{
-    private int totalCount;
+    private int TotalCount;
     private List<ZoneSet> zoneSet;
 
     public int getTotalCount() {
-        return totalCount;
+        return TotalCount;
     }
 
     public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
+        this.TotalCount = totalCount;
     }
 
     public List<ZoneSet> getZoneSet() {
@@ -31,7 +31,7 @@ public class DescribeAvailabilityZonesResponse extends CommonResponse{
     @Override
     public String toString() {
         return "DescribeAvailabilityZonesResponse{" +
-                "totalCount=" + totalCount +
+                "totalCount=" + TotalCount +
                 ", zoneSet=" + zoneSet +
                 '}';
     }
