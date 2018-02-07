@@ -91,5 +91,9 @@ public class QCloudClient {
     public ModifySecurityGroupsOfInstanceResponse ModifySecurityGroupsOfInstance(ModifySecurityGroupsOfInstanceRequest modifySecurityGroupsOfInstanceRequest) throws QCloudClientException, QCloudServiceException {
         return gson.fromJson(this.request.execute("ModifySecurityGroupsOfInstance", modifySecurityGroupsOfInstanceRequest.toMap()), ModifySecurityGroupsOfInstanceResponse.class);
     }
+
+    public DescribeBaseMetricsResponse DescribeBaseMetrics(DescribeBaseMetricsRequest describeBaseMetricsRequest) throws QCloudClientException, QCloudServiceException{
+        return gson.fromJson(this.request.execute("DescribeBaseMetrics", describeBaseMetricsRequest.toMap()), DescribeBaseMetricsResponse.class);
+    }
 }
 
