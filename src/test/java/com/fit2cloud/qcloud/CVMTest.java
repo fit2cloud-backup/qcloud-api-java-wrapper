@@ -18,8 +18,8 @@ public class CVMTest extends TestCase {
 
     @Override
     public void setUp() throws Exception {
-        String secretId = System.getenv("QCLOUD_SECRET_ID");
-        String secretKey = System.getenv("QCLOUD_SECRET_KEY");
+        String secretId = System.getenv("******");
+        String secretKey = System.getenv("*********");
         QCloudCredential qCloudCredential = new QCloudCredential(secretId, secretKey);
         client = new QCloudClient(qCloudCredential, "cvm.api.qcloud.com/v2/index.php");
     }
@@ -101,5 +101,14 @@ public class CVMTest extends TestCase {
         returnInstanceRequest.setRegion("sh");
         ReturnInstanceResponse returnInstanceResponse = this.client.ReturnInstance(returnInstanceRequest);
         System.out.println(new Gson().toJson(returnInstanceResponse));
+    }
+
+    @Test
+    public void testDescribeBaseMetricsResponse() throws Exception {
+        DescribeBaseMetricsRequest describeBaseMetricsRequest = new DescribeBaseMetricsRequest();
+        describeBaseMetricsRequest.setNamespace("qce/cvm");
+        DescribeBaseMetricsResponse describeBaseMetricsResponse = this.client.DescribeBaseMetrics(describeBaseMetricsRequest);
+        System.out.println(new Gson().toJson(describeBaseMetricsResponse));
+
     }
 }
